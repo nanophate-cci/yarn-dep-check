@@ -26,5 +26,6 @@
     "prop-types": "^15.0.0",
     "react-native-macos": "^0.63.0",
     "react-native-windows": "^0.63.0"
-  }
+  },
+  "packageManager": "yarn@4.4.0"
 }
