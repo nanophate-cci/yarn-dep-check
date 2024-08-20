@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: cimg/node:20.7.0
+    resource_class: medium
     environment:
       # limit heap size to 3GB 
       NODE_OPTIONS: '--max-old-space-size=3072'
