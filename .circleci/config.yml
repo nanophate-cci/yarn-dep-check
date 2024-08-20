@@ -7,9 +7,5 @@ jobs:
     steps:
       - checkout
       - run: yarn --version
-      - run: npm install yarn
-      - run: yarn set version berry
-      - run: yarn plugin import node-modules
-      - run: yarn --version
       - run: yarn install
       - run: ls node_modules
