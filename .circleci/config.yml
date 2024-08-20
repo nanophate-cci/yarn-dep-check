@@ -6,5 +6,10 @@ jobs:
       - image: cimg/node:20.7.0
     steps:
       - checkout
+      - run: yarn --version
+      - run: npm install -g yarn
+      - run: yarn set version berry
+      - run: yarn plugin import node-modules
+      - run: yarn --version
       - run: yarn install
       - run: ls node_modules
