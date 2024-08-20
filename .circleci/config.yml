@@ -7,8 +7,8 @@ jobs:
     environment:
       # limit heap size to 3GB 
       NODE_OPTIONS: '--max-old-space-size=3072'
-      TASK_POOL_CONCURRENCY: 1
-      YARN_LOG_LEVEL: verbose
+      YARN_TASK_POOL_CONCURRENCY: 1
+      YARN_ENABLE_INLINE_BUILDS: true
     steps:
       - checkout
       - run: yarn --version
