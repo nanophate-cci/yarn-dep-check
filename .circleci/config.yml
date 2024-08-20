@@ -12,6 +12,5 @@ jobs:
     steps:
       - checkout
       - run: yarn --version
-      - run: |
-          yarn install --verbose
+      - run: yarn install
       - run: ls node_modules
