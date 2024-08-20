@@ -1,17 +1,43 @@
 version: 2.1
 
+parameters:
+  run_integration_tests:
+    type: boolean
+    default: false
+
 jobs:
   build:
+    parameters:
+      resource_class:
+        default: "medium"
+        type: string
+      node_options:
+        default: ""
+        type: string
+      yarn_task_pool_concurrency:
+        default: ""
+        type: string
     docker:
       - image: cimg/node:20.7.0
-    resource_class: medium
+    resource_class: << parameters.resource_class >>
     environment:
-      # limit heap size to 3GB 
-      NODE_OPTIONS: '--max-old-space-size=3072'
-      YARN_TASK_POOL_CONCURRENCY: 1
+      # limit heap size to 3GB for medium resource class
+      NODE_OPTIONS: << parameters.node_options >>
+      YARN_TASK_POOL_CONCURRENCY: << parameters.yarn_task_pool_concurrency >>
     steps:
       - checkout
       - run: yarn --version
       - run: yarn config
       - run: yarn install
       - run: ls node_modules
+
+workflows:
+  version: 2
+  test_matrix:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              resource_class: [medium, medium]
+              node_options: ["--max-old-space-size=3072", " "]
+              yarn_task_pool_concurrency: ["1", " "]
